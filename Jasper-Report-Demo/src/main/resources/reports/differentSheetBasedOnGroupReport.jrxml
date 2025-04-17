@@ -1,0 +1,73 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="differentSheetBasedOnGroupReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="593fa465-9f5d-429d-bef5-c36183446980">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="region" class="java.lang.String"/>
+	<field name="product" class="java.lang.String"/>
+	<field name="sales" class="java.lang.Double"/>
+	<sortField name="region"/>
+	<variable name="totalSales" resetType="Group" calculation="Sum" resetGroup="RegionGroup" class="java.lang.Double">
+		<expression><![CDATA[$F{sales}]]></expression>
+	</variable>
+	<group name="RegionGroup" startNewPage="true">
+		<expression><![CDATA[$F{region}]]></expression>
+		<groupHeader>
+			<band>
+				<element kind="frame" uuid="9abc1e06-d2f9-4d06-9fd5-acbee434901f" x="0" y="-60" width="180" height="30">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<element kind="staticText" uuid="ca9b7536-d138-46ad-846e-93e8d8af6606" x="0" y="0" width="80" height="30">
+						<text><![CDATA[Region]]></text>
+					</element>
+					<element kind="textField" uuid="d907d726-509c-4d1a-b2e3-c3c4a11af214" x="80" y="0" width="100" height="30">
+						<expression><![CDATA[$F{region}]]></expression>
+					</element>
+				</element>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<element kind="staticText" uuid="c40c4b79-9bb2-4c41-baba-d546d0cc5d3b" x="80" y="0" width="100" height="30">
+					<text><![CDATA[Total Sale for this Region]]></text>
+				</element>
+				<element kind="textField" uuid="4a1eeef0-fe46-46a8-93bd-ff5d7ec587ce" x="180" y="0" width="100" height="30">
+					<expression><![CDATA[$V{totalSales}]]></expression>
+				</element>
+			</band>
+		</groupFooter>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="9d04ad41-3958-4739-8a25-4bbf51b63819" x="80" y="10" width="400" height="30" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Different Sheet BasedOn Group Report]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="30" splitType="Stretch">
+		<element kind="staticText" uuid="d71a7dc0-e0d7-4a4c-90ba-47ddb8829448" x="80" y="0" width="100" height="30">
+			<text><![CDATA[Product]]></text>
+		</element>
+		<element kind="staticText" uuid="0a7e42de-968a-4829-9e75-fbc63203f171" x="180" y="0" width="100" height="30">
+			<text><![CDATA[Sales]]></text>
+		</element>
+		<element kind="staticText" uuid="34e696ba-5bc5-4b0f-812b-f2c83eda3e36" x="0" y="0" width="80" height="30">
+			<text><![CDATA[SI No]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<element kind="textField" uuid="bf0796c9-b213-4d73-89d4-1e455c656998" x="80" y="0" width="100" height="30">
+				<expression><![CDATA[$F{product}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88b5679d-e07b-40f9-9cad-4d7bd2e43095"/>
+			</element>
+			<element kind="textField" uuid="fe03ec1b-4042-43c7-ad25-d76abe5fec31" x="180" y="0" width="100" height="30">
+				<expression><![CDATA[$F{sales}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7cb4b5ad-9412-4c09-939d-4bc42036f20b"/>
+			</element>
+			<element kind="textField" uuid="0088654d-7e02-402e-b44f-4f49443d9ebb" x="0" y="0" width="80" height="30">
+				<expression><![CDATA[$V{RegionGroup_COUNT}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

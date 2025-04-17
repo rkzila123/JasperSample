@@ -1,0 +1,207 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="GroupExample" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78c5b15a-97be-4bc4-847c-9c30fd2f68b1">
+	<parameter name="InitialBalance" class="java.lang.Double"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="transactionId" class="java.lang.Integer"/>
+	<field name="accountNumber" class="java.lang.String"/>
+	<field name="date" class="java.util.Date"/>
+	<field name="type" class="java.lang.String"/>
+	<field name="amount" class="java.lang.Double"/>
+	<sortField name="accountNumber"/>
+	<sortField name="type"/>
+	<variable name="grandTotalDebit" calculation="Sum" class="java.lang.Double">
+		<expression><![CDATA[($F{type} != null && $F{type}.equals("DEBIT")) ? $F{amount} : 0.0]]></expression>
+	</variable>
+	<variable name="grandTotalCredit" calculation="Sum" class="java.lang.Double">
+		<expression><![CDATA[($F{type} != null && $F{type}.equals("CREDIT")) ? $F{amount} : 0.0]]></expression>
+	</variable>
+	<variable name="groupTotalDebit" resetType="Group" calculation="Sum" resetGroup="AccountGroup" class="java.lang.Double">
+		<expression><![CDATA[($F{type} != null && $F{type}.equals("DEBIT")) ? $F{amount} : 0.0]]></expression>
+	</variable>
+	<variable name="groupTotalCredit" resetType="Group" calculation="Sum" resetGroup="AccountGroup" class="java.lang.Double">
+		<expression><![CDATA[($F{type} != null && $F{type}.equals("CREDIT")) ? $F{amount} : 0.0]]></expression>
+	</variable>
+	<variable name="Variable_3" class="java.lang.String"/>
+	<group name="AccountGroup" startNewPage="true">
+		<expression><![CDATA[$F{accountNumber}]]></expression>
+		<groupHeader>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="100">
+				<element kind="staticText" uuid="e9a635c5-88a4-4d8c-82db-7e69b16c30fb" x="80" y="10" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[Total Debit :]]></text>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+				<element kind="staticText" uuid="d2ce0096-6a69-4294-9c72-0c4ac55a2153" x="80" y="40" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[Total Credit :]]></text>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+				<element kind="textField" uuid="bddce022-4597-4ad5-9242-ec6af6fb515b" x="180" y="10" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$V{groupTotalDebit}]]></expression>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+				<element kind="textField" uuid="499de7c6-7a3f-4107-9942-94beb388f72b" x="180" y="40" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$V{groupTotalCredit}]]></expression>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+				<element kind="staticText" uuid="11f7140d-68be-47ea-ba7c-cc2acd399097" x="80" y="70" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[Final User Balance :]]></text>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+				<element kind="textField" uuid="83348bb5-4aef-4462-9914-2d144fdd0337" x="180" y="70" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$V{groupTotalCredit}-$V{groupTotalDebit}]]></expression>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+				</element>
+			</band>
+		</groupFooter>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="113" splitType="Stretch">
+		<element kind="staticText" uuid="7427dfdd-c8b6-4d8e-a2c5-301e367e511c" x="80" y="23" width="400" height="38" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Group Sample Example]]></text>
+		</element>
+		<element kind="staticText" uuid="2fa621f4-6d5c-49ce-9266-53f7701b2154" x="0" y="83" width="180" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Opening Balance :]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="d8235462-8d1d-40aa-82f5-dc9b9ef963de" x="180" y="83" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{InitialBalance}]]></expression>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+	</title>
+	<pageHeader height="46" splitType="Stretch">
+		<element kind="frame" uuid="246534fa-28d4-46f7-be8a-bf8d4e63574e" x="0" y="11" width="454" height="31">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<element kind="staticText" uuid="9955094d-1e77-43b5-96c2-cbdb104584cc" x="-1" y="0" width="80" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Account No :]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="6bb1b114-9bd6-4add-927c-f1e70bd36b4f" x="79" y="0" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{accountNumber}]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+		</element>
+	</pageHeader>
+	<columnHeader height="30" splitType="Stretch">
+		<element kind="staticText" uuid="b2ce1e84-f6ce-426e-9ffc-68ee1e7bcb09" x="0" y="0" width="80" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[ID]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="6206f50e-f63b-4ce6-a6fb-495df9ff9eeb" x="80" y="0" width="100" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Date]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="19347cde-5f9c-4e36-b9f1-f3bd39d501f3" x="180" y="0" width="100" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Type]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="b0a88c2d-6481-44b9-bb48-c6ffb39d39f3" x="280" y="0" width="100" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Amount]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<element kind="textField" uuid="25bddbb6-6961-41d6-a194-06264df710bb" x="0" y="1" width="80" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{transactionId}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="027e0123-573f-4c23-b63f-77dedbdcd941"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="ddef8f4b-9e65-4a5e-8ec6-b718f3c01317" x="80" y="1" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe74d9d5-dcd4-4585-9b36-4f2fc909dba2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="1b74f9a6-9702-4d21-b07a-e7c146d78fbd" x="180" y="1" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{type}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6728f5da-b91b-48ee-affc-a25c729cc63c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="77eb4ddf-e4bb-4650-9e6b-d125b38de12c" x="280" y="1" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{amount}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="863d550e-df04-466d-850a-5575965c61bf"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<summary height="120" splitType="Stretch">
+		<element kind="staticText" uuid="74085d1b-2e14-4881-8296-83d57f48cf3e" x="80" y="30" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Total Debit :]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="437b5d2f-e638-48c5-9eef-10140a6a9b29" x="80" y="60" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Total Credit :]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="220bad74-9e38-4e62-9e34-7935651b9403" x="80" y="90" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Final Bank Balance :]]></text>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="22485f5b-2967-4384-b2fb-991df5058493" x="180" y="30" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{grandTotalDebit}]]></expression>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="1c032466-e35d-4ed8-a488-bb82037d4306" x="180" y="60" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{grandTotalCredit}]]></expression>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="71f9c40c-9970-4703-999a-e05a2ae9136c" x="180" y="90" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{InitialBalance}+$V{grandTotalCredit}-$V{grandTotalDebit}]]></expression>
+			<box>
+				<pen lineWidth="0.25"/>
+			</box>
+		</element>
+	</summary>
+</jasperReport>

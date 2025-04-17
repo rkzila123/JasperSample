@@ -1,0 +1,52 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="HorizontalPrint" language="java" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="260" columnSpacing="15" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abcd1234-abcd-1234-abcd-abcdef123456">
+	<field name="id" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="department" class="java.lang.String"/>
+	<field name="salary" class="java.lang.Double"/>
+	<variable name="TotalSalary" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{salary}]]></expression>
+	</variable>
+	<title height="50">
+		<element kind="staticText" uuid="18d18866-1c88-46ad-91f3-fbaddc5064a4" x="80" y="10" width="400" height="30" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Sample Project for Horizontal Printing]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<element kind="staticText" uuid="030638df-0780-4543-bf57-92cec8a5b77a" x="0" y="0" width="90" height="15">
+				<text><![CDATA[ID:]]></text>
+			</element>
+			<element kind="textField" uuid="c484e9a5-fac6-418f-b8f9-bd7001a38d81" x="95" y="0" width="150" height="15">
+				<expression><![CDATA[$F{id}]]></expression>
+			</element>
+			<element kind="staticText" uuid="ee8d3bf4-1656-48b3-baf1-27d59609dd34" x="0" y="18" width="90" height="15">
+				<text><![CDATA[Name:]]></text>
+			</element>
+			<element kind="textField" uuid="5c5aa2ad-896a-44bf-8fe3-d1d0f5686f29" x="95" y="18" width="150" height="15">
+				<expression><![CDATA[$F{name}]]></expression>
+			</element>
+			<element kind="staticText" uuid="bbf86951-ac22-4247-a348-1815661c6aed" x="0" y="36" width="90" height="15">
+				<text><![CDATA[Department:]]></text>
+			</element>
+			<element kind="textField" uuid="8a6798f4-f669-4f9a-80db-dd1e84cd0466" x="95" y="36" width="150" height="15">
+				<expression><![CDATA[$F{department}]]></expression>
+			</element>
+			<element kind="staticText" uuid="1da261d1-2b9c-402a-b15e-1e92b864bb85" x="0" y="54" width="90" height="15">
+				<text><![CDATA[Salary:]]></text>
+			</element>
+			<element kind="textField" uuid="3586a021-7aaf-4693-a2e4-984d7e876e18" x="95" y="54" width="150" height="15">
+				<expression><![CDATA[$F{salary}]]></expression>
+			</element>
+			<element kind="line" uuid="9e506555-7054-4607-b7f8-ff628c186c36" x="0" y="75" width="245" height="1" forecolor="#CCCCCC"/>
+		</band>
+	</detail>
+	<summary height="51">
+		<element kind="staticText" uuid="cc28ee84-094e-4945-9627-9b9494b71130" x="80" y="10" width="100" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Total Salary Paid :]]></text>
+		</element>
+		<element kind="textField" uuid="50d45aa8-01fa-4c06-b54a-180da522056d" x="180" y="10" width="100" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{TotalSalary}]]></expression>
+		</element>
+	</summary>
+</jasperReport>
